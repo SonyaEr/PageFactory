@@ -14,15 +14,12 @@ import static org.openqa.selenium.By.xpath;
 
 public class HomePage extends BasePage {
 
-
     @FindBy(xpath = "//div[@class='menu-lvl first-level']/ul/li[@class='parent js_sidebar-item']")
     private  List<WebElement> menu;
-
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
-
 
     public List<WebElement>  getMenu() {
         return menu;
@@ -72,5 +69,4 @@ public class HomePage extends BasePage {
         }
         return invalid;
     }
-
 }

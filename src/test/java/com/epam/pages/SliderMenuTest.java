@@ -16,7 +16,7 @@ public class SliderMenuTest extends BaseTest {
         for (int i = 0; i < menu.size(); i++) {
             getHomePage().actionsMoveToElement(menu.get(i));
             ref.add(getHomePage().getHrefMenu(i));
-            List<WebElement> subMenu =   getHomePage().getFirstSubMenu(i);
+            List<WebElement> subMenu = getHomePage().getFirstSubMenu(i);
             for (int j = 0; j < subMenu.size(); j++) {
                 ref.add(getHomePage().getHrefFirstSubMenu(i,j));
                 List<WebElement> sub2Menu = getHomePage().getSecondSubMenu(i,j);

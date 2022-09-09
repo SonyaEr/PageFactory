@@ -27,7 +27,6 @@ public class Cart  extends BasePage {
     @FindBy(xpath ="//div[@id='js_cart']/descendant::a[contains(@href,'sign-in')]")
     private WebElement login;
 
-
     @Override
     public By getLocator(int i, int item) {
         switch (i) {
@@ -81,6 +80,4 @@ public class Cart  extends BasePage {
             return null;
         });
     }
-
-
 }

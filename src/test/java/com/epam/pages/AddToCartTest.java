@@ -11,6 +11,7 @@ import static org.testng.Assert.assertTrue;
 public class AddToCartTest extends BaseTest {
 
     private final String SEARCH_KEYWORD = "samsung";
+    private final String TITLE_PAGE = "Вхід та реєстрація";
 
     @Test(priority = 1)
     public void checkAddToOrder() {
@@ -59,7 +60,7 @@ public class AddToCartTest extends BaseTest {
         getHeader().clickOnShoppingCart();
         getHomePage().waitForVisibilityOfElement(2, getSamsungPage().getCartPopup());
         getCart().clickLogin();
-        assertEquals(getLoginPage().getTitle(), "Вхід та реєстрація");
+        assertEquals(getLoginPage().getTitle(), TITLE_PAGE);
     }
 
 
