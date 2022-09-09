@@ -5,7 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.*;
 
 import static org.openqa.selenium.By.xpath;
 
@@ -43,10 +46,31 @@ public class HomePage extends BasePage {
         return driver.findElement(xpath("(((//ul[@class='sidebar-list'])[" + sectionMenu + "+1]/li[@class='parent js_sidebar-item'])[" + sectionFirstSubMenu + "+1]//li[@class='single-hover-block']/a)[" +sectionSecondSubMenu+ " +1]")).getAttribute("href");
     }
 
+    public ArrayList<String> checkHrefSet(Set<String> set){
+        String url;
+        HttpURLConnection huc;
+        int respCode;
 
-
-
-
-
+        Iterator<String> it = set.iterator();
+        ArrayList<String> invalid = new ArrayList<>();
+        while (it.hasNext()) {
+            url = it.next();
+            if (url == null || url.isEmpty()) {
+                continue;
+            }
+            try {
+                huc = (HttpURLConnection) (new URL(url).openConnection());
+                huc.setRequestMethod("HEAD");
+                huc.connect();
+                respCode = huc.getResponseCode();
+                if (respCode >= 400) {
+                    invalid.add(url);
+                }
+            } catch (IOException e) {
+                invalid.add(url);
+            }
+        }
+        return invalid;
+    }
 
 }

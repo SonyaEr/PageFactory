@@ -3,9 +3,6 @@ package com.epam.pages;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.*;
 
 import static org.testng.Assert.assertEquals;
@@ -30,30 +27,7 @@ public class SliderMenuTest extends BaseTest {
             }
         }
         Set<String> set = new LinkedHashSet<>(ref);
-        String url;
-        HttpURLConnection huc;
-        int respCode;
-
-        Iterator<String> it = set.iterator();
-        ArrayList<String> invalid = new ArrayList<>();
-        while (it.hasNext()) {
-            url = it.next();
-            if (url == null || url.isEmpty()) {
-                continue;
-            }
-            try {
-                huc = (HttpURLConnection) (new URL(url).openConnection());
-                huc.setRequestMethod("HEAD");
-                huc.connect();
-                respCode = huc.getResponseCode();
-                if (respCode >= 400) {
-                    invalid.add(url);
-                }
-            } catch (IOException e) {
-                invalid.add(url);
-            }
-        }
-        assertEquals(invalid.size(), 0, invalid.toString());
+        assertEquals(getHomePage().checkHrefSet(set).size(), 0, getHomePage().checkHrefSet(set).toString());
     }
 
 }

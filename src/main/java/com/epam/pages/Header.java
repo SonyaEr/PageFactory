@@ -27,6 +27,4 @@ public class Header extends BasePage {
         ShoppingCart.click();
     }
 
-
-
 }
