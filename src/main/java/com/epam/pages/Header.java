@@ -12,6 +12,9 @@ public class Header extends BasePage {
     @FindBy(id = ("input_search"))
     private WebElement searchInput;
 
+    @FindBy(xpath ="//div[contains(@class,'header-bottom__cart')]/parent::a")
+    private WebElement ShoppingCart;
+
     public Header(WebDriver driver) {
         super(driver);
     }
@@ -20,5 +23,10 @@ public class Header extends BasePage {
         searchInput.sendKeys(keyword);
         searchButton.click();
     }
+    public void clickOnShoppingCart() {
+        ShoppingCart.click();
+    }
+
+
 
 }

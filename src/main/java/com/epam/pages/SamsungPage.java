@@ -18,8 +18,8 @@ public class SamsungPage extends BasePage {
         super(driver);
     }
 
-    public void clickOnAddToCartButton() {
-        addToCartButton.get(0).click();
+    public void clickOnAddToCartButton(int item) {
+        addToCartButton.get(item).click();
     }
 
     public WebElement getCartPopup() {

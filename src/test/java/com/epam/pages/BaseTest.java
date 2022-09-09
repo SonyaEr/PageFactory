@@ -48,6 +48,9 @@ public class BaseTest {
         return new Cart(getDriver());
     }
 
+    public LoginPage getLoginPage() {
+        return new LoginPage(getDriver());
+    }
 
 
 }

@@ -1,11 +1,9 @@
 package com.epam.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,15 +16,14 @@ public class BasePage {
 
     private By locator;
 
-    public By getLocator(int i) {
+    public By getLocator(int id) {
         return locator;
     }
 
-    public BasePage(WebDriver driver, By locator) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        this.locator = locator;
+    public By getLocator(int id, int param) {
+        return locator;
     }
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -41,5 +38,16 @@ public class BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
+
+    public void waitForElementToBeClickable(long time, By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public void actionsMoveToElement(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+    }
+
 
 }
